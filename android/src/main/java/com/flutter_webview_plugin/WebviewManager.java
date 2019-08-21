@@ -5,6 +5,7 @@ import android.net.Uri;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Build;
 import android.view.KeyEvent;
 import android.view.View;
@@ -126,6 +127,7 @@ class WebviewManager {
         this.context = context;
         this.resultHandler = new ResultHandler();
         webViewClient = new BrowserClient();
+        webView.setBackgroundColor(Color.TRANSPARENT);
         webView.setOnKeyListener(new View.OnKeyListener() {
             @Override
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -178,7 +180,7 @@ class WebviewManager {
                 Intent i = new Intent(Intent.ACTION_GET_CONTENT);
                 i.addCategory(Intent.CATEGORY_OPENABLE);
                 i.setType("*/*");
-               activity.startActivityForResult(
+                activity.startActivityForResult(
                         Intent.createChooser(i, "File Browser"),
                         FILECHOOSER_RESULTCODE);
             }
@@ -270,6 +272,8 @@ class WebviewManager {
                 rootView.addView(customView);
 
                 // hide webview and show custom view
+                customView.setBackgroundColor(Color.BLACK);
+//                customView.setAlpha(1.0);
                 customView.setVisibility(View.VISIBLE);
                 FrameLayout contentView = (FrameLayout)rootView.findViewById(android.R.id.content);
                 contentView.setVisibility(View.GONE);

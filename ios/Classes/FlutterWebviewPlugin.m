@@ -108,6 +108,7 @@ static NSString *const CHANNEL_NAME = @"flutter_webview_plugin";
     }
 
     self.webview = [[WKWebView alloc] initWithFrame:rc];
+    self.webview.opaque = NO;
     self.webview.UIDelegate = self;
     self.webview.navigationDelegate = self;
     self.webview.scrollView.delegate = self;
